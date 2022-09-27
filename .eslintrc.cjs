@@ -5,22 +5,19 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    'plugin:react/recommended'
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended'
   ],
   overrides: [
   ],
-  settings: {
-    react: {
-      version: '18'
-    }
-  },
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
   plugins: [
     'react',
-    '@emotion/eslint-plugin'
+    '@typescript-eslint'
   ],
   rules: {
     'indent': [
@@ -40,5 +37,10 @@ module.exports = {
       'always'
     ],
     'react/no-unknown-property': ['error', { ignore: ['css'] }]
+  },
+  settings: {
+    react: {
+      version: '18'
+    }
   }
 };
