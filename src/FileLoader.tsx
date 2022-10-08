@@ -1,10 +1,9 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { css } from '@emotion/react';
 import { Button } from '@mui/material';
 
-type FileLoaderProps = {
-  message: string;
-}
+// type FileLoaderProps = {
+// }
 
 enum PricePaidColumns {
   id,
@@ -42,13 +41,7 @@ type PricePaidRecord = [
 
 // Loading the price paid CSV file using File System Access API:
 // https://wicg.github.io/file-system-access/
-export const FileLoader: FC<FileLoaderProps> = (props) => {
-  const {
-    message = 'Drop files or folders here'
-  } = props;
-
-  const [dragOver, setDragOver] = useState(false);
-
+export const FileLoader: FC = () => {
   const onOpenFileClick = async () => {
     const textDecoder = new TextDecoder();
     try {
@@ -87,52 +80,17 @@ export const FileLoader: FC<FileLoaderProps> = (props) => {
         });
         // Mutating records with splice is faster than using concat and reassigning.
         records.splice(records.length, 0, ...chunkRecords);
-        console.log(records.length);
       }
+      console.log(records.length);
       console.log(records);
     } catch (e) {
       console.error(e);
     }
   };
 
-  const onDragEnd = () => setDragOver(false);
-
-  const onDrop: React.DragEventHandler<HTMLDivElement> = async (event) => {
-    event.preventDefault();
-    onDragEnd();
-
-    const fileHandlesPromises = [...event.dataTransfer.items]
-      .filter(item => item.kind === 'file')
-      .map(item => item.getAsFileSystemHandle());
-
-    for await (const handle of fileHandlesPromises) {
-      if (!handle) {
-        continue;
-      }
-      if (handle.kind === 'directory') {
-        console.log(`Directory: ${handle.name}`);
-      } else {
-        console.log(`File: ${handle.name}`);
-      }
-    }
-  };
-
   return (
     <div
       css={containerStyle}>
-      <div
-        aria-label='CSV File Drop Zone'
-        onDragOver={event => {
-          event.preventDefault();
-          setDragOver(true);
-        }}
-        onDragLeave={onDragEnd}
-        onDragEnd={onDragEnd}
-        onDrop={onDrop}
-        css={dropZoneStyle(dragOver)}
-      >
-        <div>{message}</div>
-      </div>
       <Button
         onClick={onOpenFileClick}
         variant='outlined'>
@@ -154,23 +112,6 @@ const filePickerOptions = {
   excludeAcceptAllOption: true,
   multiple: false
 };
-
-const dropZoneStyle = (dragOver: boolean) => css({
-  width: '120px',
-  height: '80px',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  userSelect: 'none',
-  backgroundColor: dragOver ? 'violet' : 'pink',
-  borderStyle: 'solid',
-  borderColor: 'black',
-  borderRadius: '5px',
-  boxSizing: 'border-box',
-  transitionProperty: 'background',
-  transitionDuration: '0.5s',
-  transitionTimingFunction: 'ease-out'
-});
 
 const containerStyle = css({
   display: 'flex',

@@ -3,7 +3,7 @@ import './App.css';
 import { FileLoader } from './FileLoader';
 
 function App() {
-  return <FileLoader message='Drop a CSV file here' />;
+  return <FileLoader />;
 }
 
 export default App;
