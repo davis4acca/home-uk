@@ -69,12 +69,12 @@ export const FileLoader: FC = () => {
           return columns.map((quotedColumn, i) => {
             const column = quotedColumn.length >= 2 ? quotedColumn.slice(1, -1) : '';
             switch (i) {
-            case PricePaidColumns.price:
-              return parseInt(column, 10);
-            case PricePaidColumns.date:
-              return new Date(column);
-            default:
-              return column;
+              case PricePaidColumns.price:
+                return parseInt(column, 10);
+              case PricePaidColumns.date:
+                return new Date(column);
+              default:
+                return column;
             }
           }) as PricePaidRecord;
         });
