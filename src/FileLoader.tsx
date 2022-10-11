@@ -7,8 +7,6 @@ import { parseStream } from './pricePaidParser';
 // type FileLoaderProps = {
 // }
 
-
-
 // Loading the price paid CSV file using File System Access API:
 // https://wicg.github.io/file-system-access/
 export const FileLoader: FC = () => {

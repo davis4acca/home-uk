@@ -1,0 +1,25 @@
+{
+    "version": "3.0.0",
+    "fileTiles": [],
+    "tilesAutoServe": true,
+    "adminPasswordHash": "fccee4ea3e2c36b35255e8cd2b0d2fdfa0d72ef59e013f3af8f392fc465b3449",
+    "instanceId": "e9c53790-3776-4c41-a856-43dbdde296fa",
+    "apiDomains": [],
+    "frontPage": {
+        "type": "list"
+    },
+    "serverName": "MapTiler Server",
+    "wmtsAllLayersEnabled": false,
+    "rasterization": {
+        "poolSize": 10,
+        "queueCapacity": 1000
+    },
+    "log": {
+        "access": false,
+        "file": false,
+        "level": "error"
+    },
+    "maps": [],
+    "sendUsageStatistics": true,
+    "activation": "online"
+}
