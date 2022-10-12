@@ -34,7 +34,9 @@ export const FileLoader: FC = () => {
         variant='outlined'>
         Open file...
       </Button>
-      <MapView />
+      <div style={{ width: '800px', height: '600px' }}>
+        <MapView />
+      </div>
     </div>
   );
 };
